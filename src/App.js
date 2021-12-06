@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import { Tags } from './Tags';
 import { Images } from './Images';
 import { Tagger } from './Tagger';
@@ -9,32 +9,30 @@ function App() {
   // object full of images added to the app 
   const [images, setImages] = useState({});
   const [currentTag, setCurrentTag] = useState("");
-  const { currentImg, setCurrentImg } = useState("");
+  const {currentImg, setCurrentImg} = useState("");
   const parseUniqueTags = (tagString) => {
     return new Set(tagString.split(" "))
   }
 
-  const saveImage = image => {
-    const imageTags = new Set(image.tags.split(/\s+/));
+  const savePhoto = (photo) => {
     setImages({
       ...images,
-      [image.id]: {
-        id: image.id,
-        href: image.href,
-        tags: imageTags,
-      },
-    });
-    setTags(new Set([...tags, ...imageTags]));
-    setCurrentImg(image.id);
-  };
-
+      // id, href, tags
+      [photo.id]: {
+        id: photo.id,
+        href: photo.href,
+        tags: parseUniqueTags(photo.tags)
+      }
+      
+    })
+  }
 
   return (
     <>
       <span>App</span>
-      <Tags tags={tags} />
-      <Images photos={images} />
-      <Tagger saveImage={saveImage} />
+       <Tags tags={tags} />
+       <Images photos={images}/>
+       <Tagger savePhoto={savePhoto} />
     </>
   );
 }

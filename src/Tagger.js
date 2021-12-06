@@ -1,5 +1,5 @@
 import {useState} from 'react';
-export const Tagger = ({ saveImage }) => {
+export const Tagger = ({ savePhoto }) => {
   //   console.log(tags);
 
   const noop = (ev) => {
@@ -21,7 +21,7 @@ export const Tagger = ({ saveImage }) => {
     <input type="text" name="tags" id="" placeholder="#t1 #t2"
       value={tags}
       onChange={(ev) => setTags(ev.target.value)}/>
-    <button onClick={(ev)=>saveImage({
+    <button onClick={(ev)=>savePhoto({
       href: href,
       id: id,
       tags: tags
